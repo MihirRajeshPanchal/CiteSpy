@@ -1,65 +1,60 @@
-# CiteSpy README
+# CiteSpy VS Code Extension
 
-This is the README for your extension "CiteSpy". After writing up a brief description, we recommend including the following sections.
+<p align="center">
+  <img src="assets/logo.png" alt="CiteSpy Icon" width="200">
+  <br>
+  CiteSpy
+</p>
+
+Welcome to the CiteSpy VS Code Extension! This extension enhances your coding and research experience by scraping research paper titles, summaries, and links and displaying them directly in Visual Studio Code.
+
+<!-- <p align="center">
+  <img src="assets/CiteSpy.gif" alt="CiteSpy Icon" width="1000">
+  <br>
+  Working
+</p> -->
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- **Research Paper Scraping:** CiteSpy provides functionality to scrape research paper titles, summaries, and links from various sources.
+- **Display in VS Code:** The extension integrates seamlessly with Visual Studio Code, displaying scraped information directly within the editor.
+- **Automatic Updates:** CiteSpy automatically updates the displayed information based on the latest data available.
+- **Customizable Sources:** Users can configure the extension to scrape from specific repositories, journals, or databases.
+- **Efficient Searching:** CiteSpy includes search functionality within VS Code to quickly find relevant papers based on titles or summaries.
 
-For example if there is an image subfolder under your extension project workspace:
+## Installation
 
-\!\[feature X\]\(images/feature-x.png\)
+1. Launch Visual Studio Code.
+2. Open the Extensions view by clicking on the square icon in the left sidebar or by pressing `Ctrl+Shift+X` (`Cmd+Shift+X` on macOS).
+3. Search for "CiteSpy" in the Extensions Marketplace.
+4. Click on the "Install" button for the CiteSpy VS Code Extension.
+5. Once installed, click on the "Reload" button to activate the extension.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Usage
 
-## Requirements
+To use CiteSpy, follow these steps:
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+1. Open Visual Studio Code.
+2. Click on the CiteSpy button in the activity bar
+3. CiteSpy will automatically fetch and display research paper titles, summaries, and links within a dedicated panel in Visual Studio Code.
 
-## Extension Settings
+## Feedback and Contributions
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Your feedback and contributions are valuable! If you encounter any issues, have suggestions for improvements, or would like to contribute to the project, please visit the [GitHub repository](https://github.com/MihirRajeshPanchal/CiteSpy) for the CiteSpy VS Code Extension.
 
-For example:
+## License
 
-This extension contributes the following settings:
+This extension is released under the [MIT License](LICENSE).
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+## Credits
 
-## Known Issues
+The CiteSpy extension was created by [Mihir Panchal](https://github.com/MihirRajeshPanchal). Special thanks to the following contributors for their support.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+<p align="start">
+<a  href="https://github.com/MihirRajeshPanchal/CiteSpy/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=MihirRajeshPanchal/CiteSpy"/>
+</a>
+</p>
 
-## Release Notes
+Thank you for choosing the CiteSpy VS Code Extension! We hope you find it useful for enhancing your research endeavors directly within Visual Studio Code. If you have any questions or need assistance, feel free to reach out. Happy coding and researching!
 
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**

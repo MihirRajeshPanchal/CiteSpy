@@ -2,14 +2,37 @@
   "name": "citespy",
   "displayName": "CiteSpy",
   "description": "Effortless research paper search at your fingertips",
+  "publisher": "MihirPanchal",
+  "icon": "assets/logo.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MihirRajeshPanchal/CiteSpy"
+  },
+  "keywords": [
+    "research",
+    "arxiv",
+    "ieee",
+    "research paper",
+    "cite",
+    "citations",
+    "mihir panchal",
+    "mihir",
+    "citespy",
+    "paper",
+    "google scholar",
+    "journal paper"
+  ],
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.91.0"
+    "vscode": "^1.82.0"
   },
   "categories": [
-    "Other"
+    "Education"
   ],
   "main": "./extension.js",
+  "activationEvents": [
+    "onCommand:CiteSpy.openSidebar"
+  ],
   "contributes": {
     "commands": [
       {
@@ -44,7 +67,7 @@
   "devDependencies": {
     "@types/mocha": "^10.0.7",
     "@types/node": "20.x",
-    "@types/vscode": "^1.90.0",
+    "@types/vscode": "^1.82.0",
     "@vscode/test-cli": "^0.0.9",
     "@vscode/test-electron": "^2.4.0",
     "eslint": "^8.57.0",
