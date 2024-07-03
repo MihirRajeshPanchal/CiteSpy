@@ -1,22 +1,17 @@
 {
-  "name": "CiteSpy",
-  "displayName": "",
+  "name": "citespy",
+  "displayName": "CiteSpy",
   "description": "Effortless research paper search at your fingertips",
   "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.91.0"
+  },
   "categories": [
     "Other"
-  ],
-  "activationEvents": [
-    "onCommand:CiteSpy.helloWorld",
-    "onCommand:CiteSpy.openSidebar"
   ],
   "main": "./extension.js",
   "contributes": {
     "commands": [
-      {
-        "command": "CiteSpy.helloWorld",
-        "title": "Hello World"
-      },
       {
         "command": "CiteSpy.openSidebar",
         "title": "Open CiteSpy Sidebar"
@@ -34,6 +29,7 @@
     "views": {
       "citeSpy": [
         {
+          "type": "webview",
           "id": "citeSpyView",
           "name": "CiteSpy"
         }
@@ -46,12 +42,15 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.90.0",
     "@types/mocha": "^10.0.7",
     "@types/node": "20.x",
-    "eslint": "^8.57.0",
-    "typescript": "^5.4.5",
+    "@types/vscode": "^1.90.0",
     "@vscode/test-cli": "^0.0.9",
-    "@vscode/test-electron": "^2.4.0"
+    "@vscode/test-electron": "^2.4.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0"
   }
 }
