@@ -1,4 +1,4 @@
-# CiteSpy VS Code Extension
+# CiteSpy
 
 <p align="center">
   <img src="citespy/assets/logo.png" alt="CiteSpy Icon" width="200">
