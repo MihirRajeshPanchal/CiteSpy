@@ -1,3 +1,4 @@
 flask/venv
 .env
 *.pyc
+CiteSpy/node_modules
