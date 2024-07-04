@@ -1,8 +1,10 @@
 (function() {
     const vscode = acquireVsCodeApi();
+    const loader = document.getElementById('loader');
 
     document.getElementById('searchButton').addEventListener('click', () => {
         const searchQuery = document.getElementById('searchInput').value;
+        showLoader();
         vscode.postMessage({
             command: 'search',
             text: searchQuery
@@ -13,14 +15,26 @@
         const message = event.data;
         switch (message.command) {
             case 'results':
+                hideLoader();
                 const resultsContainer = document.getElementById('results');
                 resultsContainer.innerHTML = '';
                 message.data.forEach(paper => {
                     resultsContainer.appendChild(createPaperComponent(paper));
                 });
                 break;
+            case 'error':
+                hideLoader();
+                break;
         }
     });
+
+    function showLoader() {
+        loader.style.display = 'flex';
+    }
+
+    function hideLoader() {
+        loader.style.display = 'none';
+    }
 
     function createPaperComponent(paper) {
         const paperElement = document.createElement('div');
@@ -70,7 +84,6 @@
                 ellipsis.style.display = 'inline';
                 readMoreLink.textContent = 'Read more';
             }
-            // Prevent scrolling
             setTimeout(() => {
                 paperElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }, 0);

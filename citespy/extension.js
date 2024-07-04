@@ -58,6 +58,9 @@ class CiteSpyViewProvider {
                     <button id="searchButton">Search</button>
                 </div>
                 <div id="results"></div>
+                <div id="loader" class="loader" style="display: none;">
+                    <div class="spinner"></div>
+                </div>
                 <script src="${scriptUri}"></script>
             </body>
             </html>`;
@@ -80,6 +83,7 @@ class CiteSpyViewProvider {
                             webview.postMessage({ command: 'results', data: data });
                         } catch (error) {
                             vscode.window.showErrorMessage('Error fetching search results: ' + error.message);
+                            webview.postMessage({ command: 'error' });
                         }
                         return;
                 }
