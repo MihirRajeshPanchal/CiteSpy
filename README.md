@@ -8,11 +8,12 @@
 
 Welcome to the CiteSpy VS Code Extension! This extension enhances your coding and research experience by scraping research paper titles, summaries, and links and displaying them directly in Visual Studio Code.
 
-<!-- <p align="center">
-  <img src="assets/CiteSpy.gif" alt="CiteSpy Icon" width="1000">
-  <br>
-  Working
-</p> -->
+<p align="center">
+  
+
+https://github.com/user-attachments/assets/2480fc80-d4f4-4ba6-a35c-b0fdb78bb020
+
+</p>
 
 ## Features
 
