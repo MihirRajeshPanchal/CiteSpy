@@ -4,3 +4,5 @@ bs4
 python-dotenv
 pydantic
 requests
+free-proxy
+gunicorn

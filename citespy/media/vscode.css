@@ -69,12 +69,35 @@ button:focus {
 }
 
 .paper .authors {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: var(--vscode-descriptionForeground);
+}
+
+.paper .year-citation {
     margin-bottom: 10px;
     font-size: 0.9em;
     color: var(--vscode-descriptionForeground);
 }
 
+.paper .abstract {
+    color: var(--vscode-descriptionForeground);
+    margin-bottom: 10px;
+}
+
+.paper .read-more {
+    color: var(--vscode-textLink-foreground);
+    text-decoration: none;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.paper .read-more:hover {
+    text-decoration: underline;
+}
+
 .paper .links {
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
@@ -88,19 +111,21 @@ button:focus {
     text-decoration: underline;
 }
 
-.paper .summary {
-    color: var(--vscode-descriptionForeground);
-    margin-bottom: 5px;
+.paper .citation-styles {
+    margin-top: 10px;
 }
 
-.paper .read-more {
-    color: var(--vscode-textLink-foreground);
-    text-decoration: none;
+.paper .copy-button {
+    background-color: var(--vscode-button-secondaryBackground);
+    color: var(--vscode-button-secondaryForeground);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
     font-size: 0.9em;
 }
 
-.paper .read-more:hover {
-    text-decoration: underline;
+.paper .copy-button:hover {
+    background-color: var(--vscode-button-secondaryHoverBackground);
 }
 
 .loader {
@@ -128,4 +153,8 @@ button:focus {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+.icon {
+    margin-right: 5px;
 }

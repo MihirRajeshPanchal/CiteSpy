@@ -1,9 +1,19 @@
+const dotenv = require('dotenv');
+const path = require('path');
+const fs = require('fs');
 const vscode = require('vscode');
-const fetch = require('node-fetch');
+
+const envPath = path.resolve(__dirname, '.env');
+if (fs.existsSync(envPath)) {
+    const envConfig = dotenv.parse(fs.readFileSync(envPath));
+    for (const k in envConfig) {
+        process.env[k] = envConfig[k];
+    }
+} else {
+    console.log('.env file not found at:', envPath);
+}
 
 function activate(context) {
-    console.log('Congratulations, your extension "CiteSpy" is now active!');
-
     const provider = new CiteSpyViewProvider(context.extensionUri);
 
     context.subscriptions.push(
@@ -72,15 +82,28 @@ class CiteSpyViewProvider {
                 switch (message.command) {
                     case 'search':
                         try {
-                            const response = await fetch('https://citespy.onrender.com/search', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify({ query: message.text }),
+                            const S2_API_KEY = process.env.S2_API_KEY;
+                            const result_limit = 10;
+
+                            if (!S2_API_KEY) {
+                                throw new Error('S2_API_KEY is not set in the environment.');
+                            }
+
+                            const response = await fetch('https://api.semanticscholar.org/graph/v1/paper/search?' + new URLSearchParams({
+                                query: message.text,
+                                limit: result_limit,
+                                fields: 'title,url,venue,year,authors,abstract,citationCount,publicationTypes,citationStyles,externalIds'
+                            }), {
+                                headers: { 'X-API-KEY': S2_API_KEY }
                             });
+
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status}`);
+                            }
+
                             const data = await response.json();
-                            webview.postMessage({ command: 'results', data: data });
+                            console.log(data);
+                            webview.postMessage({ command: 'results', data: data.data });
                         } catch (error) {
                             vscode.window.showErrorMessage('Error fetching search results: ' + error.message);
                             webview.postMessage({ command: 'error' });

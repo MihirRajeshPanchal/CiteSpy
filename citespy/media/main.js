@@ -46,51 +46,81 @@
 
         const authorsElement = document.createElement('p');
         authorsElement.className = 'authors';
-        authorsElement.textContent = paper.authors.join(', ');
+        authorsElement.textContent = paper.authors.map(author => author.name).join(', ');
         paperElement.appendChild(authorsElement);
 
-        const linksElement = document.createElement('div');
-        linksElement.className = 'links';
-        paper.links.forEach(link => {
-            const linkElement = document.createElement('a');
-            linkElement.href = link.url;
-            linkElement.textContent = link.title || 'Link';
-            linkElement.target = '_blank';
-            linksElement.appendChild(linkElement);
-        });
-        paperElement.appendChild(linksElement);
+        const yearCitationElement = document.createElement('p');
+        yearCitationElement.className = 'year-citation';
+        yearCitationElement.textContent = `Year: ${paper.year || 'N/A'} | Citations: ${paper.citationCount || 0}`;
+        paperElement.appendChild(yearCitationElement);
 
-        const summaryElement = document.createElement('p');
-        summaryElement.className = 'summary';
-        const words = paper.summary.split(' ');
-        const shortSummary = words.slice(0, 20).join(' ');
-        const restSummary = words.slice(20).join(' ');
-        summaryElement.innerHTML = `${shortSummary} <span class="ellipsis">...</span><span class="rest-summary" style="display:none;"> ${restSummary}</span>`;
-        
+        const abstractElement = document.createElement('p');
+        abstractElement.className = 'abstract';
+        const shortAbstract = paper.abstract ? paper.abstract.split(' ').slice(0, 30).join(' ') : 'No abstract available';
+        const restAbstract = paper.abstract ? paper.abstract.split(' ').slice(30).join(' ') : '';
+        abstractElement.innerHTML = `${shortAbstract} <span class="ellipsis">...</span><span class="rest-abstract" style="display:none;"> ${restAbstract}</span>`;
+        paperElement.appendChild(abstractElement);
+
         const readMoreLink = document.createElement('a');
         readMoreLink.textContent = 'Read more';
         readMoreLink.href = '#';
         readMoreLink.className = 'read-more';
         readMoreLink.addEventListener('click', (e) => {
             e.preventDefault();
-            const ellipsis = summaryElement.querySelector('.ellipsis');
-            const restSummary = summaryElement.querySelector('.rest-summary');
-            if (restSummary.style.display === 'none') {
-                restSummary.style.display = 'inline';
+            const ellipsis = abstractElement.querySelector('.ellipsis');
+            const restAbstract = abstractElement.querySelector('.rest-abstract');
+            if (restAbstract.style.display === 'none') {
+                restAbstract.style.display = 'inline';
                 ellipsis.style.display = 'none';
                 readMoreLink.textContent = 'Read less';
             } else {
-                restSummary.style.display = 'none';
+                restAbstract.style.display = 'none';
                 ellipsis.style.display = 'inline';
                 readMoreLink.textContent = 'Read more';
             }
-            setTimeout(() => {
-                paperElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 0);
         });
-        
-        paperElement.appendChild(summaryElement);
         paperElement.appendChild(readMoreLink);
+
+        const linksElement = document.createElement('div');
+        linksElement.className = 'links';
+
+        if (paper.url) {
+            const paperLink = document.createElement('a');
+            paperLink.href = paper.url;
+            paperLink.innerHTML = '<span class="icon">📄</span> View Paper';
+            paperLink.target = '_blank';
+            paperLink.className = 'paper-link';
+            linksElement.appendChild(paperLink);
+        }
+
+        if (paper.externalIds && paper.externalIds.DOI) {
+            const doiLink = document.createElement('a');
+            doiLink.href = `https://doi.org/${paper.externalIds.DOI}`;
+            doiLink.innerHTML = '<span class="icon">🔗</span> DOI';
+            doiLink.target = '_blank';
+            doiLink.className = 'doi-link';
+            linksElement.appendChild(doiLink);
+        }
+
+        paperElement.appendChild(linksElement);
+
+        const citationStylesElement = document.createElement('div');
+        citationStylesElement.className = 'citation-styles';
+        if (paper.citationStyles && paper.citationStyles.bibtex) {
+            const bibtexButton = document.createElement('button');
+            bibtexButton.innerHTML = '<span class="icon">📋</span> Copy BibTeX';
+            bibtexButton.className = 'copy-button';
+            bibtexButton.addEventListener('click', () => {
+                navigator.clipboard.writeText(paper.citationStyles.bibtex).then(() => {
+                    bibtexButton.textContent = 'Copied!';
+                    setTimeout(() => {
+                        bibtexButton.innerHTML = '<span class="icon">📋</span> Copy BibTeX';
+                    }, 2000);
+                });
+            });
+            citationStylesElement.appendChild(bibtexButton);
+        }
+        paperElement.appendChild(citationStylesElement);
 
         return paperElement;
     }
